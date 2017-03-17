@@ -1,0 +1,33 @@
+md-card {
+	margin: 8px 0px;
+}
+md-card md-card-title {
+	padding: 6px 20px;
+	border-bottom: 1px gray solid;
+}
+md-card md-card-actions {
+	margin: 0px;
+}
+md-card md-card-actions .md-button.md-icon-button {
+	margin: 2px;
+}
+md-card md-card-actions:not(.layout-column) .md-button.md-icon-button:last-of-type {
+	margin: 2px;
+}
+md-card md-card-actions:not(.layout-column) .md-button.md-icon-button:first-of-type{
+	margin: 2px;
+}
+md-card md-card-title md-card-title-text {
+	margin-top:4px;
+}
+
+md-card md-card-title+md-card-content {
+	margin-top: 8px;
+}
+
+md-card.md-default-theme .md-card-image, md-card .md-card-image {
+    width: 100%;
+    height: 150px;
+    background-size: cover;
+    background-position-y: -50px;	
+}

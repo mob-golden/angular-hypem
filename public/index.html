@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Front end test</title>
+
+  <base href="/" />
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/scripts/angular-material/angular-material.min.css"/>
+
+  <style>
+    * {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .ng-body-content {
+      max-width: 450px;
+      margin-left: auto;
+      margin-right:auto;
+    }
+  </style>
+</head>
+
+<body ng-app="materialApp" layout="row" ng-controller="appCtrl as app">
+
+    <div style="width:100%" class="ng-body-content">
+        <div ui-view></div>
+    </div>
+
+    <script src="/scripts/angular/angular.min.js"></script>
+    <script src="/scripts/angular-animate/angular-animate.min.js"></script>
+    <script src="/scripts/angular-aria/angular-aria.min.js"></script>
+    <script src="/scripts/angular-material/angular-material.min.js"></script>
+
+    <script type="text/javascript" src="/scripts/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+    <script src="directives/feed/feed.js"></script>
+    
+    <script src="modules/home/controllers/homeCtrl.js"></script>
+    <script src="modules/home/services/homeService.js"></script>
+    <link rel="stylesheet" href="modules/home/css/home.css"/>
+
+
+    <script src="app.controller.js"></script>
+
+    <script src="app.js"></script>
+    <script src="app.routes.js"></script>
+
+</body>
+</html>
