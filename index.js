@@ -13,9 +13,24 @@ app.get('/', function (req, res) {
 });
 
 app.get('/hypemdata', function(req, res) {
-  Hypem.playlist.latest("all", 1, function(result, result2){
-	res.send(result2)
-  });
+  var page_num = parseInt(req.query.page_num);
+  console.log(req.query.order_by + ": "+ page_num);
+  if(req.query.order_by == "latest") {
+    Hypem.playlist.latest("all", page_num, function(result, result2){
+      res.send(result2)
+    });
+  }
+  if(req.query.order_by == "loved") {
+    Hypem.user("alfredogolden").loved( page_num, function(result, result2){
+      res.send(result2)
+    });
+  }
+  if(req.query.order_by == "posted") {
+    Hypem.playlist.popular("all", page_num, function(result, result2){
+      res.send(result2)
+    });
+  }
+
 })
 
 app.all('/*', function(req, res, next) {

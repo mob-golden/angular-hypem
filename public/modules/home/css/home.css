@@ -8,6 +8,7 @@ md-pagination-wrapper {
 }
 
 md-tabs md-ink-bar {
+	height: 3px;
 	color: #00AAB4;
 	background-color: #00AAB4;
 }
@@ -16,10 +17,32 @@ md-tabs .md-tab.md-active {
 	color: black;
 }
 
-md-autocomplete input:not(.md-input) {
-	background-color: #D8D8D8;
-}
-
 md-tab-content>div{
      background-color: #E5E9EA; 
+}
+
+.search-div {
+	width: 100%;
+	background-color: #D8D8D8;
+}
+.search-div input {
+	background-color: #D8D8D8;
+    width: 84%;
+    background-color: #d8d8d8;
+    border: none;
+	height: 40px;
+	padding-left:20px;
+	font-size: 36px;
+}
+.search-div input:focus{
+	outline: none;
+	border:none;
+}
+.search-div label {
+	margin-right: 12px;
+	margin-top: 4px;
+	float:right;
+}
+.search-div label span {
+	font-size: 32px;
 }

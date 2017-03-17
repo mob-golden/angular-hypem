@@ -1,10 +1,18 @@
 <md-card>
+  <div style="position: relative;">
+    <a href="{{feed.posturl}}">
+      <img style="background-image: url({{feed.url}})" class="md-card-image">
+    </a>
+    <span class="feed-artist">{{feed.artist}}</span></br>
+    <span class="feed-title">{{feed.title}}</span>
+    <div class="feed-time">{{feed.nTime}}</div>
+    <div class="feed-buy">Buy</div>
+  </div>
 
-  <img style="background-image: url({{feed.url}})" class="md-card-image">
 	<md-card-title>
 
 	  <md-card-title-text>
-	    <span class="md-headline">{{feed.title}}</span>
+      <span class="feed-posturl">posted on: <a href="{{feed.posturl}}">{{feed.sitename}}</a></span>  
 	  </md-card-title-text>
 
     <md-card-actions layout="row" layout-align="end center">
@@ -22,8 +30,7 @@
 
 	<md-card-content>
 	  <p>
-	    The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-	    two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+	    {{feed.description}}
 	  </p>
 	</md-card-content>
 </md-card>

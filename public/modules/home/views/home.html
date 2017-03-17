@@ -1,41 +1,39 @@
 
-<md-content ng-controller="homeCtrl as hc">
-  <md-autocomplete
-    ng-disabled="ctrl.isDisabled"
-    md-no-cache="ctrl.noCache"
-    md-selected-item="ctrl.selectedItem"
-    md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-    md-search-text="ctrl.searchText"
-    md-selected-item-change="ctrl.selectedItemChange(item)"
-    md-items="item in ctrl.querySearch(ctrl.searchText)"
-    md-item-text="item.display"
-    md-min-length="0"
-    placeholder="Search">
-    <md-item-template>
-      <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">
-        {{item.display}}
-      </span>
-    </md-item-template>
-    <md-not-found>
-      No states matching "{{ctrl.searchText}}" were found.
-      <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
-    </md-not-found>
-  </md-autocomplete>
+<md-content ng-app="materialApp" ng-controller="homeCtrl as hc">
+  <div class="search-div">
+    <label for="search-box">
+      <span class="fa fa-search"></span>
+    </label>
+    <input type="search" id="search-box" ng-model="searchText">
+  </div>
   
   <md-tabs md-dynamic-height md-border-bottom>
 
-    <md-tab label="LATEST">
-      <div ng-repeat="feed in hc.feedItems">
-        <feed-item url="{{feed.thumb_url_large}}" title="{{feed.title}}" loved="{{feed.loved_count}}"></feed-item>
+    <md-tab label="LATEST" >
+      <div infinite-scroll='loadLatest()' infinite-scroll-distance='1' infinite-scroll-disabled='loadingLatest'>
+        <div ng-repeat="feed in feedsByLatest">
+          <feed-item url="{{feed.thumb_url_large}}" title="{{feed.title}}" loved="{{feed.loved_count}}" posted="{{feed.posted_count}}" description="{{feed.description}}" sitename="{{feed.sitename}}" artist="{{feed.artist}}" posturl="{{feed.posturl}}" time="{{feed.time}}"></feed-item>
+        </div>
+        <div ng-if="loadingLatest">Loading Now...</div>
       </div>
     </md-tab>
 
-    <md-tab label="LOVED">
-      <h1>Feeds by Loved</h1>
+    <md-tab label="LOVED" >
+      <div infinite-scroll='loadLoved()' infinite-scroll-distance='1' infinite-scroll-disabled='loadingLoved'>
+        <div ng-repeat="feed in feedsByLoved">
+          <feed-item url="{{feed.thumb_url_large}}" title="{{feed.title}}" loved="{{feed.loved_count}}" posted="{{feed.posted_count}}" description="{{feed.description}}" sitename="{{feed.sitename}}" artist="{{feed.artist}}" posturl="{{feed.posturl}}" time="{{feed.time}}"></feed-item>
+        </div>
+        <div ng-if="loadingLoved">Loading Now...</div>
+      </div>
     </md-tab>
 
-    <md-tab label="POSTED">
-      <h1>Feeds by Posted</h1>
+    <md-tab label="POSTED" >
+      <div infinite-scroll='loadPosted()' infinite-scroll-distance='1' infinite-scroll-disabled='loadingPosted'>
+        <div ng-repeat="feed in feedsByPosted">
+          <feed-item url="{{feed.thumb_url_large}}" title="{{feed.title}}" loved="{{feed.loved_count}}" posted="{{feed.posted_count}}" description="{{feed.description}}" sitename="{{feed.sitename}}" artist="{{feed.artist}}" posturl="{{feed.posturl}}" time="{{feed.time}}"></feed-item>
+        </div>
+        <div ng-if="loadingPosted">Loading Now...</div>
+      </div>
     </md-tab>
 
   </md-tabs>

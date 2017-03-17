@@ -1,5 +1,8 @@
+'use strict';
+
 var materialApp = angular
 .module('materialApp', [
+    'infinite-scroll',
 	'materialApp.directives',
     'materialApp.routes',
     'ui.router',

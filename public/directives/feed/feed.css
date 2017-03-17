@@ -2,8 +2,8 @@ md-card {
 	margin: 8px 0px;
 }
 md-card md-card-title {
-	padding: 6px 20px;
-	border-bottom: 1px gray solid;
+	padding: 0px 20px;
+	border-bottom: 1px #f0f0f0 solid;
 }
 md-card md-card-actions {
 	margin: 0px;
@@ -12,10 +12,21 @@ md-card md-card-actions .md-button.md-icon-button {
 	margin: 2px;
 }
 md-card md-card-actions:not(.layout-column) .md-button.md-icon-button:last-of-type {
-	margin: 2px;
+    margin: 0px 6px;
+    padding: 0px;
+    width: 16px;
+    height: 16px;
+    min-height: 28px;
 }
 md-card md-card-actions:not(.layout-column) .md-button.md-icon-button:first-of-type{
-	margin: 2px;
+    margin: 0px 6px;
+    padding: 0px;
+    width: 16px;
+    height: 16px;
+    min-height: 28px;
+}
+md-card-actions>span {
+	margin-right: 18px;
 }
 md-card md-card-title md-card-title-text {
 	margin-top:4px;
@@ -30,4 +41,69 @@ md-card.md-default-theme .md-card-image, md-card .md-card-image {
     height: 150px;
     background-size: cover;
     background-position-y: -50px;	
+}
+
+md-icon {
+	min-width: 18px;
+	min-height: 18px;
+	max-width: 18px;
+	max-height: 18px;
+	margin:0px;
+}
+
+md-card-content p {
+	line-height: 20px;
+	letter-spacing: 0.8px;
+}
+
+.feed-time {    
+    text-align: center;
+    width: 36px;
+	padding: 6px;
+	border-radius: 4px;
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	background-color: #2F323B;
+	color: #FFFFFF;
+}
+.feed-buy {
+    text-align: center;
+    width: 36px;
+	padding: 6px;
+	border-radius: 4px;
+	position: absolute;
+	right: 20px;
+	top: 50px;
+	background-color: #2F323B;
+	color: #FFFFFF;
+}
+
+.feed-artist {
+	position: absolute;
+    left: 20px;
+    color: white;
+    font-size: 20px;
+    bottom: 60px;
+}
+.feed-title {
+	position: absolute;
+    left: 20px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    bottom: 20px;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 350px;
+}
+.feed-posturl {
+	color: gray;
+}
+.feed-posturl a {    
+	color: gray;
+    text-decoration: none;
+    border-bottom: 1px solid #00A8B2;
 }
