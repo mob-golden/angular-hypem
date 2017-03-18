@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var Hypem = require("node-hypem");
+var https = require("https");
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -12,22 +12,47 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
+function fetchHttps(url, cb) {
+  var req = https.get(url, function (res) {
+    requestResponse = "";
+    res.on("data", function(response) {
+      requestResponse += response;
+    });
+    res.on("end", function() {
+      if (res.statusCode === 404) {
+        cb(new Error("Not Found"), null);
+      } else {
+        // For safety, do try-catch 
+        try {
+            cb(null, JSON.parse(requestResponse));
+        } catch (err) {
+            cb(new Error("Invalid JSON"), null);
+        }
+      }
+    });
+  });
+  req.end();
+  req.on("error", function(err) {
+    cb(err, null);
+  });
+};
+
 app.get('/hypemdata', function(req, res) {
   var page_num = parseInt(req.query.page_num);
   console.log(req.query.order_by + ": "+ page_num);
   if(req.query.order_by == "latest") {
-    Hypem.playlist.latest("all", page_num, function(result, result2){
-      res.send(result2)
+    fetchHttps('https://api.hypem.com/playlist/latest/all/json/'+page_num, (error, response) => {
+      res.send(response)
     });
   }
   if(req.query.order_by == "loved") {
-    Hypem.user("alfredogolden").loved( page_num, function(result, result2){
-      res.send(result2)
+    fetchHttps('https://api.hypem.com/playlist/loved/alfredogolden/json/'+page_num, (error, response) => {
+      res.send(response)
     });
   }
   if(req.query.order_by == "posted") {
-    Hypem.playlist.popular("all", page_num, function(result, result2){
-      res.send(result2)
+    fetchHttps('https://api.hypem.com/playlist/popular/all/json/'+page_num, (error, response) => {
+      res.send(response)
     });
   }
 
