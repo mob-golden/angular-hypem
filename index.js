@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var https = require("https");
+var http = require("http");
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -12,13 +12,17 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-function fetchHttps(url, cb) {
-  var req = https.get(url, function (res) {
-    requestResponse = "";
+function fetchHttp(url, cb) {
+  var req = http.get({
+        host: 'api.hypem.com',
+        path: url
+    }, function (res) {
+    let requestResponse = "";
     res.on("data", function(response) {
       requestResponse += response;
     });
     res.on("end", function() {
+      console.log(requestResponse);
       if (res.statusCode === 404) {
         cb(new Error("Not Found"), null);
       } else {
@@ -41,17 +45,17 @@ app.get('/hypemdata', function(req, res) {
   var page_num = parseInt(req.query.page_num);
   console.log(req.query.order_by + ": "+ page_num);
   if(req.query.order_by == "latest") {
-    fetchHttps('https://api.hypem.com/playlist/latest/all/json/'+page_num, (error, response) => {
+    fetchHttp('/playlist/latest/all/json/'+page_num, (error, response) => {
       res.send(response)
     });
   }
   if(req.query.order_by == "loved") {
-    fetchHttps('https://api.hypem.com/playlist/loved/alfredogolden/json/'+page_num, (error, response) => {
+    fetchHttp('/playlist/loved/alfredogolden/json/'+page_num, (error, response) => {
       res.send(response)
     });
   }
   if(req.query.order_by == "posted") {
-    fetchHttps('https://api.hypem.com/playlist/popular/all/json/'+page_num, (error, response) => {
+    fetchHttp('/playlist/popular/all/json/'+page_num, (error, response) => {
       res.send(response)
     });
   }
