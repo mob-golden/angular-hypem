@@ -3,13 +3,8 @@ angular.module('homeService', [])
     
     var homeFactory = {};
 
-    homeFactory.fetchFeed = function(orderBy, pageNum, callback) {
-    	$http({
-		    url: '/hypemdata', 
-		    method: "GET",
-		    params: {order_by: orderBy, page_num: pageNum}
-		 })
-    	.then(callback);
+    homeFactory.fetchFeed = function(type, pageNum, callback) {
+    	$http.get('https://api.hypem.com/playlist/'+ type +'/json/' + pageNum).then(callback);
     };
 
     return homeFactory;
